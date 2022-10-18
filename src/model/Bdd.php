@@ -130,6 +130,20 @@ class Bdd
         }
     }
 
+    public function getOeuvreStock()
+    {
+        $oeuvres = array();
+        foreach($this->oeuvres as $oeuvres)
+        {
+            foreach($oeuvres as $oeuvre)
+            {
+                if($oeuvre->getEtat() == EtatOeuvre::STOCK)
+                    $oeuvres[] = $oeuvre;
+            }
+        }
+        return $oeuvres;
+    }
+
     public function deleteOeuvre(Oeuvre $oeuvre)
     {
         $key = array_search($oeuvre, $this->getOeuvres());
@@ -235,16 +249,16 @@ class Bdd
 
     //Salles
 
-    public function newSalle()
+    public function newSalle(string $id)
     {
-        $salle = new Salle();
+        $salle = new Salle($id);
         $this->addSalle($salle);
         return $salle;
     }
 
-    public function newSalleProjecteur()
+    public function newSalleProjecteur(string $id)
     {
-        $salleProjecteur = new SalleProjecteur();
+        $salleProjecteur = new SalleProjecteur($id);
         $this->addSalle($salleProjecteur);
         return $salleProjecteur;
     }
@@ -254,6 +268,29 @@ class Bdd
         $exposition = new Exposition($commissaire, $theme, $salles);
         $this->addExposition($exposition);
         return $exposition;
+    }
+
+    public function getSalle(string $id)
+    {
+        foreach($this->salles as $salle)
+        {
+            if($salle->getId() === $id)
+                return $salle;
+        }
+        return null;
+    }
+
+    public function deleteSalle(Salle $salle)
+    {
+        $key = array_search($salle, $this->getSalles());
+        if($key != false)
+        {
+            foreach($salle->getOeuvres() as $oeuvre)
+            {
+                $oeuvre->setEtat(EtatOeuvre::STOCK);
+            }
+            unset($this->salles[$key]);
+        }
     }
 
     public function init()
@@ -266,7 +303,7 @@ class Bdd
         $oeuvre3 = $this->newSculpture($auteur2, "Sculpture 2", "JA3FF4J92", 25);
         $oeuvre4 = $this->newFilm($auteur2, "Film 1", "F324I2");
 
-        $salle1 = $this->newSalle();
+        $salle1 = $this->newSalle("Salle 1");
         try
         {
             $salle1->addOeuvre($oeuvre1);
@@ -276,7 +313,7 @@ class Bdd
             trigger_error($e->getMessage(), E_USER_WARNING);
         }
 
-        $salle2 = $this->newSalleProjecteur();
+        $salle2 = $this->newSalleProjecteur("Salle 2");
         try
         {
             $salle2->addOeuvre($oeuvre3);

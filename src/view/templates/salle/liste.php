@@ -1,3 +1,4 @@
+<a href="/?controller=salle&action=new">Nouvelle Salle</a>
 <h3>Liste des Salles :</h3>
 <ul>
     <?php
@@ -7,7 +8,8 @@ use App\model\classe\SalleProjecteur;
  if(isset($content['salles'])) { ?>
         <?php foreach($content['salles'] as $salle) { ?>
             <li>
-                <p>Salle <?php echo ($salle instanceof SalleProjecteur) ? "de projection" : null ?></p>
+                <p><?php echo $salle->getId() ?? "Non défini" ?></p>
+                <p><?php echo ($salle instanceof SalleProjecteur) ? "Salle de projection" : null ?></p>
                 <?php if (count($salle->getOeuvres())> 0) { ?>
                     <p>Oeuvres dans cette salle : </p>
                     <ul>
@@ -21,6 +23,7 @@ use App\model\classe\SalleProjecteur;
                     <p>Aucune oeuvre dans cette salle.</p>
                 <?php } ?>
             </li>
+            <hr>
         <?php } ?>
     <?php } ?>
 </ul>

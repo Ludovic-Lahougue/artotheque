@@ -12,11 +12,11 @@
     </div>
     <div>
         <label for="prenom">Prénom</label>
-        <input type="text" name="prenom" idTitre="prenom" required>
+        <input type="text" name="prenom" id="prenom" required>
     </div>
     <div>
         <label for="nom">Nom</label>
-        <input type="text" name="nom" idTitre="nom" required>
+        <input type="text" name="nom" id="nom" required>
     </div>
     <div>
         <label for="email">Email</label>
