@@ -89,4 +89,9 @@ class SalleController
         
         $this->liste();
     }
+
+    public function modify()
+    {
+        
+    }
 }

@@ -47,4 +47,19 @@ class ExpositionController
         $this->view->setPart('title', "Expositions");
         $this->view->setPart('content', $content);
     }
+
+    public function new()
+    {
+
+    }
+
+    public function delete()
+    {
+
+    }
+
+    public function modify()
+    {
+        
+    }
 }

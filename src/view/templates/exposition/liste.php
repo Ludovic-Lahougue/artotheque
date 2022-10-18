@@ -1,3 +1,4 @@
+<a href="/?controller=oeuvre&action=new">Nouvelle exposition</a>
 <h3>Liste des expositions :</h3>
 <ul>
     <?php if(isset($content['expositions'])) { ?>

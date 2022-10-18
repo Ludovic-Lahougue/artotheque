@@ -23,6 +23,10 @@ use App\model\interfaces\Caracteristique;
                                 <input type="hidden" name="code" value="<?php echo $oeuvre->getCode() ?>" />
                                 <button type="submit">Supprimer</button>
                             </form>
+                            <form method="POST" action="/?controller=oeuvre&action=modify">
+                                <input type="hidden" name="code" value="<?php echo $oeuvre->getCode() ?>" />
+                                <button type="submit">Modifier</button>
+                            </form>
                         </li>
                         <hr>
                     </ul>

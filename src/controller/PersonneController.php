@@ -81,4 +81,9 @@ class PersonneController
         
         $this->liste();
     }
+
+    public function modify()
+    {
+        
+    }
 }

@@ -92,4 +92,9 @@ class OeuvreController
         
         $this->liste();
     }
+    
+    public function modify()
+    {
+        
+    }
 }

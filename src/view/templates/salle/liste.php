@@ -22,6 +22,14 @@ use App\model\classe\SalleProjecteur;
                 <?php } else { ?>
                     <p>Aucune oeuvre dans cette salle.</p>
                 <?php } ?>
+                <form method="POST" action="/?controller=salle&action=delete" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette salle ?')">
+                    <input type="hidden" name="id" value="<?php echo $salle->getId() ?>" />
+                    <button type="submit">Supprimer</button>
+                </form>
+                <form method="POST" action="/?controller=salle&action=modify">
+                    <input type="hidden" name="id" value="<?php echo $salle->getId() ?>" />
+                    <button type="submit">Modifier</button>
+                </form>
             </li>
             <hr>
         <?php } ?>

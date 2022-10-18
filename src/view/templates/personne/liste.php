@@ -47,6 +47,10 @@ if(isset($content['personnes'])) { ?>
                                 <input type="hidden" name="email" value="<?php echo $personne->getEmail() ?>" />
                                 <button type="submit">Supprimer</button>
                             </form>
+                            <form method="POST" action="/?controller=personne&action=modify">
+                                <input type="hidden" name="email" value="<?php echo $personne->getEmail() ?>" />
+                                <button type="submit">Modifier</button>
+                            </form>
                         </li>
                     </ul>
                     <hr>
