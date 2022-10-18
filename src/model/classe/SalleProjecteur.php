@@ -8,9 +8,9 @@ use Exception;
 
 class SalleProjecteur extends Salle
 {
-    public function __construct()
+    public function __construct(string $id)
     {
-        parent::__construct();
+        parent::__construct($id);
     }
 
     public function newOeuvre(Oeuvre $oeuvre)

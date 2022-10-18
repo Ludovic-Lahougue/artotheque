@@ -133,7 +133,8 @@ class Bdd
     public function deleteOeuvre(Oeuvre $oeuvre)
     {
         $key = array_search($oeuvre, $this->getOeuvres());
-        unset($this->oeuvres[$key]);
+        if($key != false)
+            unset($this->oeuvres[$key]);
     }
 
     // Personnes
@@ -172,6 +173,19 @@ class Bdd
         }
         return null;
     }
+
+    public function getPersonneByEmail(string $email)
+    {
+        foreach($this->getPersonnes() as $personnes)
+        {
+            foreach($personnes as $personne)
+            {
+                if($personne->getEmail() === $email)
+                    return $personne;
+            }
+        }
+        return null;
+    }
     
     public function newAuteur(string $nom, string $prenom, string $email, string $telephone)
     {
@@ -192,6 +206,31 @@ class Bdd
         $usager = new Usager($nom, $prenom, $email);
         $this->personnes["Usagers"][] = $usager;
         return $usager;
+    }
+
+    public function deletePersonne(Personne $personneRecherche)
+    {
+        foreach($this->getPersonnes() as $type => $personnes)
+        {
+            foreach($personnes as $personne)
+            {
+                if($personne->getEmail() === $personneRecherche->getEmail()) {
+                    foreach($personneRecherche->getEmprunts() as $emprunt)
+                    {
+                        $emprunt->setEtat(EtatOeuvre::CATALOGUE);
+                    }
+                    if($personneRecherche instanceof Auteur)
+                    {
+                        $inconnu = $this->getAuteurByEmail("");
+                        if(is_null($inconnu))
+                            $inconnu = $this->newAuteur("Inconnu", "", "", "");
+                        foreach($personneRecherche->getOeuvres() as $oeuvre)
+                        $oeuvre->setAuteur($inconnu);
+                    }
+                    unset($this->personnes[$type][array_search($personne, $personnes)]);
+                }
+            }
+        }
     }
 
     //Salles

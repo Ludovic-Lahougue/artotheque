@@ -9,10 +9,12 @@ use Exception;
 
 class Salle
 {
+    private string $id;
     private array $oeuvres;
 
-    public function __construct()
+    public function __construct($id)
     {
+        $this->setId($id);
         $this->oeuvres = array();
     }
 
@@ -46,6 +48,26 @@ class Salle
             unset($this->oeuvres[$index]);
             $oeuvre->setEtat(EtatOeuvre::STOCK);
         }
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId(string $id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 }
 
