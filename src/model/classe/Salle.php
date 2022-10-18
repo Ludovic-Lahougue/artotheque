@@ -1,8 +1,9 @@
 <?php
 
-namespace App\model;
+namespace App\model\classe;
 
-use App\enum\EtatOeuvre;
+use App\model\classe\oeuvre\Film;
+use App\model\enum\EtatOeuvre;
 use App\model\classe\oeuvre\Oeuvre;
 use Exception;
 
@@ -29,6 +30,13 @@ class Salle
             $this->oeuvres[] = $oeuvre;
             $oeuvre->setEtat(EtatOeuvre::EXPOSEE);
         } else throw new Exception("Impossible d'exposer cette oeuvre");
+    }
+
+    public function newOeuvre(Oeuvre $oeuvre)
+    {
+        if($oeuvre instanceof Film)
+            throw new Exception("Cette salle n'a pas de projecteur");
+        $this->addOeuvre($oeuvre);
     }
 
     public function removeOeuvre(Oeuvre $oeuvre)

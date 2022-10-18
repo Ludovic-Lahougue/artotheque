@@ -1,9 +1,10 @@
 <?php
 
-namespace App\model\personne;
+namespace App\model\classe\personne;
 
-use App\enum\EtatOeuvre;
+use App\model\enum\EtatOeuvre;
 use App\model\classe\oeuvre\Oeuvre;
+use App\model\interfaces\Caracteristique;
 use Exception;
 
 abstract class Personne
@@ -104,6 +105,10 @@ abstract class Personne
     public function addEmprunt(Oeuvre $oeuvre)
     {
         if($oeuvre->getEtat() == EtatOeuvre::CATALOGUE) {
+            if($oeuvre instanceof Caracteristique) {
+                if($oeuvre->getWeight() > 20)
+                    throw new Exception("Impossible d'enprunter une oeuvre de plus de 20 kg");
+            }
             $this->emprunts[] = $oeuvre;
             $oeuvre->setEtat(EtatOeuvre::EMPRUNTEE);
         } else throw new Exception("Emprunt impossible");

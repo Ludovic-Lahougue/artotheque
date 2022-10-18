@@ -1,6 +1,6 @@
 <?php
 
-namespace App\model\personne;
+namespace App\model\classe\personne;
 
 use App\model\classe\oeuvre\Oeuvre;
 
@@ -8,11 +8,12 @@ class Auteur extends Personne
 {
     private string $telephone;
     private array $oeuvres;
-    public function __construct(string $nom, string $prenom, string $email, string $telephone, array $oeuvres = null)
+
+    public function __construct(string $nom, string $prenom, string $email, string $telephone)
     {
         parent::__construct($nom, $prenom, $email);
         $this->setTelephone($telephone);
-        $this->setOeuvres($oeuvres == null ? array() : $oeuvres);
+        $this->setOeuvres(array());
     }
 
     /**

@@ -2,26 +2,24 @@
 
 namespace App\model\classe\oeuvre;
 
-use App\enum\EtatOeuvre;
-use App\model\personne\Auteur;
-use App\model\personne\Personne;
+use App\model\enum\EtatOeuvre;
+use App\model\classe\personne\Auteur;
 
 abstract class Oeuvre
 {
     private Auteur $auteur;
-    private Personne $proprietaire;
     private string $description;
     private string $code;
-    private int $etat;
+    private $proprietaire;
+    private string $etat;
 
-    public function __construct(Auteur $auteur, string $description, string $code, Personne $proprietaire = null)
+    public function __construct(Auteur $auteur, string $description, string $code)
     {
         $this->setAuteur($auteur);
         $this->setDescription($description);
         $this->setCode($code);
-        $this->setProprietaire($proprietaire);
+        $this->setProprietaire(null);
         $this->setEtat(EtatOeuvre::STOCK);
-        $auteur->addOeuvre($this);
     }
 
     /**
@@ -57,7 +55,7 @@ abstract class Oeuvre
      *
      * @return  self
      */ 
-    public function setProprietaire(Personne $proprietaire)
+    public function setProprietaire($proprietaire)
     {
         $this->proprietaire = $proprietaire;
 
@@ -107,7 +105,7 @@ abstract class Oeuvre
     /**
      * Get the value of etat
      */ 
-    public function getEtat(): int
+    public function getEtat(): string
     {
         return $this->etat;
     }
@@ -117,7 +115,7 @@ abstract class Oeuvre
      *
      * @return  self
      */ 
-    public function setEtat(int $etat)
+    public function setEtat(string $etat)
     {
         $this->etat = $etat;
 

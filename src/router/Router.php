@@ -52,10 +52,22 @@ class Router
         $package = $this->getRequest()->getGetParam('controller');
         switch ($package)
         {
+            case 'oeuvre':
+                $this->setControllerClassName('App\controller\OeuvreController');
+                break;
+            case 'personne':
+                $this->setControllerClassName('App\controller\PersonneController');
+                break;
+            case 'salle':
+                $this->setControllerClassName('App\controller\SalleController');
+                break;
+            case 'exposition':
+                $this->setControllerClassName('App\controller\ExpositionController');
+                break;
             default:
                 $this->setControllerClassName('App\controller\HomeController');
         }
-
+        
         if(!class_exists($this->getControllerClassName()))
             throw new Exception("Classe {$this->getControllerClassName()} non existante");
 

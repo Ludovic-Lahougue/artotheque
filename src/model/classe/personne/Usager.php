@@ -1,6 +1,6 @@
 <?php
 
-namespace App\model\personne;
+namespace App\model\classe\personne;
 
 class Usager extends Personne
 {

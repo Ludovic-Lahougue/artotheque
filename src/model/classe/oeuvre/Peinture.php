@@ -2,12 +2,12 @@
 
 namespace App\model\classe\oeuvre;
 
-use App\model\personne\{Personne, Auteur};
+use App\model\classe\personne\Auteur;
 
 class Peinture extends Oeuvre
 {
-    public function __construct(Auteur $auteur, string $description, string $code, Personne $proprietaire = null)
+    public function __construct(Auteur $auteur, string $description, string $code)
     {
-        parent::__construct($auteur, $description, $code, $proprietaire);
+        parent::__construct($auteur, $description, $code);
     }
 }

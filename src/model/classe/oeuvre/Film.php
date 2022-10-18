@@ -2,7 +2,7 @@
 
 namespace App\model\classe\oeuvre;
 
-use App\model\personne\{Personne, Auteur};
+use App\model\classe\personne\{Personne, Auteur};
 
 class Film extends Oeuvre
 {

@@ -1,9 +1,8 @@
 <?php
 
-namespace App\model;
+namespace App\model\classe;
 
-use App\model\classe\oeuvre\Oeuvre;
-use App\model\personne\Commissaire;
+use App\model\classe\personne\Commissaire;
 
 class Exposition
 {

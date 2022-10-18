@@ -42,11 +42,23 @@ class View
     {
         $menu[] = array(
             "link" => "/",
-            "text" => "Home",
+            "text" => "Accueil",
         );
         $menu[] = array(
-            "link" => "/?controller=example",
-            "text" => "Example",
+            "link" => "/?controller=oeuvre",
+            "text" => "Liste des oeuvres",
+        );
+        $menu[] = array(
+            "link" => "/?controller=personne",
+            "text" => "Liste des personnes",
+        );
+        $menu[] = array(
+            "link" => "/?controller=salle",
+            "text" => "Liste des salles",
+        );
+        $menu[] = array(
+            "link" => "/?controller=exposition",
+            "text" => "Liste des expositions",
         );
 
         $this->setPart('menu', $menu);
