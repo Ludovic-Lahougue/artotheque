@@ -40,6 +40,6 @@ class HomeController
     public function home()
     {
         $this->view = new View('templates/home.php');
-        $this->view->setPart('title', "MVC");
+        $this->view->setPart('title', "Artothèque");
     }
 }
